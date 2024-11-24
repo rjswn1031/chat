@@ -1,0 +1,51 @@
+.timeBlock {    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+}
+.timeBlock .timeArea {
+    align-self: center;
+}
+
+.timeBlock .chatBlock {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+.timeBlock .chatBlock.left {
+    align-items: baseline;
+}
+.timeBlock .chatBlock.right {
+    align-items: flex-end;
+}
+.timeBlock .chatBlock .userBlock {
+    display: flex;
+    margin-bottom: .7rem;
+}
+.timeBlock .chatBlock.left .userBlock .userImg {
+    margin-right: 0.5rem;
+}
+.timeBlock .chatBlock.right .userBlock .userImg {
+    margin-left: 0.5rem;
+}
+.timeBlock .chatBlock .userBlock .userImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    background-color: var(--main-color-3);
+    color: var(--font-color-3);
+    border-radius: 2rem;
+}
+.timeBlock .chatBlock .userBlock .userInfo .time {
+    font-size: .8rem;
+    color: var(--font-color-3);
+}
+.timeBlock .chatBlock .message {
+    padding: 1rem;
+    background-color: var(--main-color-3);
+    border-radius: 0.3rem;
+}

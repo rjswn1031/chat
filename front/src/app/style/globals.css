@@ -1,0 +1,122 @@
+:root {
+  --main-color-1: #fff;
+  --main-color-2: #4140b6;
+  --main-color-3: #e6e6e6;
+  --main-color-4: #f0f0f0;
+
+  --font-color-1: #000;
+  --font-color-2: rgb(7, 127, 255);
+  --font-color-3: #969696;
+  --font-color-4: #6c757d;
+
+  --border-color-1: #ebebeb;
+  --border-color-2: #ddd;
+}
+
+@font-face {
+  font-family: "NanumGothic";
+  src: url(./font/NanumGothic.ttf);
+}
+
+@font-face {
+  font-family: "NanumGothicBold";
+  src: url(./font/NanumGothicBold.ttf);
+}
+
+@font-face {
+  font-family: "NanumGothicExtraBold";
+  src: url(./font/NanumGothicExtraBold.ttf);
+}
+
+@font-face {
+  font-family: "NanumGothicLight";
+  src: url(./font/NanumGothicLight.ttf);
+}
+
+@font-face {
+  font-family: "MaruBuriBold";
+  src: url(./font/MaruBuri-Bold.ttf);
+}
+
+@font-face {
+  font-family: "MaruBuriExtraLight";
+  src: url(./font/MaruBuri-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: "MaruBuriLight";
+  src: url(./font/MaruBuri-Light.ttf);
+}
+
+@font-face {
+  font-family: "MaruBuriRegular";
+  src: url(./font/MaruBuri-Regular.ttf);
+}
+
+@font-face {
+  font-family: "MaruBuriSemiBold";
+  src: url(./font/MaruBuri-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url(./font/NanumSquareRoundB.ttf);
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url(./font/NanumSquareRoundEB.ttf);
+}
+
+@font-face {
+  font-family: "NanumSquareRoundL";
+  src: url(./font/NanumSquareRoundL.ttf);
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url(./font/NanumSquareRoundR.ttf);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input:focus {
+  outline: 1px solid var(--font-color-2);
+}
+
+*::-webkit-scrollbar {
+  width: .3rem;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--font-color-4);
+}
+*::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+
+html,
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "NanumSquareRoundB";
+}
+
+svg {
+  /* stroke-width: 0.5px; */
+}

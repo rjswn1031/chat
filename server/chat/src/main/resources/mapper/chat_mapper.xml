@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.boot.chat.mapper.ChatMapper">
+    <select id="getChatRoomList" resultType="map">
+        SELECT room_id
+             , create_dt
+             , owner
+             , guest
+        FROM CHAT_ROOM_LIST
+    </select>
+
+    <select id="getChatRoomListByUser" parameterType="ChatVO" resultType="map">
+        SELECT l.room_id
+             , l.room_notice 
+             , l.room_name  
+             , msg.max_dt
+             , msg.no_read_cnt
+             , (
+                SELECT GROUP_CONCAT(sm.mem_name) 
+                FROM chat_room_member srm
+                JOIN chat_member sm ON (srm.mem_id = sm.mem_id)
+                WHERE room_id = l.room_id 
+                AND srm.mem_id != #{mem_id}
+            ) AS room_member
+            , mc.msg_content 
+        FROM chat_room_list l
+        JOIN (
+            SELECT room_id
+            FROM chat_room_member
+            WHERE mem_id = #{mem_id}
+        ) m ON (m.room_id = l.room_id)
+        JOIN (
+            SELECT room_id
+                , MAX(msg_create_dt) AS max_dt
+                , SUM(msg_state) AS no_read_cnt
+            FROM chat_room_msg
+            GROUP BY room_id
+        ) msg ON (msg.room_id = l.room_id)
+        JOIN chat_room_msg mc ON (msg.max_dt = mc.msg_create_dt)
+    </select>
+
+    <select id="getMsgList" parameterType="ChatVO" resultType="map">
+        SELECT r.msg_no 
+             , r.room_id
+             , r.msg_create_dt
+             , r.msg_send_id
+             , m.mem_name
+             , r.msg_content
+             , r.msg_state
+        FROM chat_room_msg r
+        LEFT JOIN chat_member m on (r.msg_send_id = m.mem_id)
+        WHERE room_id = #{room_id}
+        ORDER BY r.msg_create_dt
+    </select>
+
+    <insert id="sendMsg" parameterType="ChatVO">
+        insert into chat_room_msg ( room_id, msg_send_id, msg_content ) 
+        values (#{room_id}, #{mem_id}, #{msg_content})
+    </insert>
+</mapper>

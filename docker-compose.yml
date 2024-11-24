@@ -1,0 +1,11 @@
+services:
+  mariadb:
+    image: mariadb:11.4.2
+    ports: 
+      - 3307:3306
+    volumes:
+      - D:\docker\mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    #command: gdb -ex r  -ex 'thread apply all bt -frame-arguments all full'  --args mariadbd
+    user: mysql

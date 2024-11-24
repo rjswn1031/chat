@@ -1,0 +1,179 @@
+#navBarWrap { 
+    flex: 0 0 5.8%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color-1);
+    border-right: 1px solid var(--border-color-1);
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px 0px;
+}
+
+#navBarWrap .navLogo {
+    flex: 0 0 11%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color-2);
+    font-size: 2.1em;
+    font-weight: 600;
+    font-family: NanumGothicExtraBold;
+    
+    margin-bottom: .3em;
+}
+
+#navBarWrap .navContent { flex: 1 0 0; }
+
+#navBarWrap .navContent .navMenuIcon { margin: 1em 1.4em; }
+#navBarWrap .navContent .navMenuIcon a {
+    padding: 1em 0em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.4em; 
+}
+#navBarWrap .navContent .navMenuIcon.on a { 
+    color: var(--font-color-2);
+    background-color: #eee; 
+}
+
+#navBarWrap .navContent .navMenuIcon:hover { 
+    color: var(--font-color-2);
+}
+
+#navBarWrap .navBottom { flex: 0 0 10%; }
+
+/* ======================================================================================================== */
+/* chatWrap */
+
+#chatWrap { 
+    display: flex; 
+    height: 100%;
+}
+#chatWrap #chatMain { flex: 2 0 0; border-right: 1px solid var(--border-color-1); }
+
+#chatMain .mainTitle {
+    margin: 3rem 0 3rem 0;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#chatMain .mainSearch {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    padding: 0 2rem;
+}
+#chatMain .mainSearch input {
+    height: 2rem;
+    padding: 0.3rem 1rem;
+    border-radius: .2rem;
+    border: 1px solid var(--border-color-2);
+}
+
+#chatWrap #ctntItemWrap .ctntItem { 
+    display: flex;
+    justify-content: space-between;
+    padding: 1.1em 1.5em;
+    border-bottom: 1px solid #eee;
+}
+#chatWrap #ctntItemWrap .ctntItem:hover {
+    background-color: var(--main-color-3);
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemLeft {}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemLeft .title {
+    font-size: 1.1em;
+    margin-bottom: 0.8em;
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemLeft .chat {
+    color: var(--font-color-3);
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemRight {
+    display: flex;
+    flex-direction: column;
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemRight .time {
+    color: var(--font-color-4);
+    font-size: 0.75em;
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemRight .cntWrap {
+    flex: 1 0 0;
+    display: flex;
+    align-items: flex-end;
+    align-self: end;
+}
+#chatWrap #ctntItemWrap .ctntItem .ctntItemRight .cntWrap .cnt {
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-color-1);
+    background-color: var(--font-color-2);
+    border-radius: 5em;
+}
+
+#chatWrap #chatDetail { 
+    flex: 8 0 0;
+    display: flex;
+    flex-direction: column;
+}
+#chatWrap #chatDetail #bottomChatWrap {
+    display: flex;
+}
+#chatWrap #chatDetail #bottomChatWrap *:not(:last-child) {
+    margin-right: .6rem;
+}
+#chatWrap #chatDetail .msgBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.05rem;
+    background-color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    border-radius: .3rem;
+    cursor: pointer;
+} 
+
+#chatWrap #chatDetail #topArea {
+    flex: 0 0 5.5em;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color-1);
+}
+#chatWrap #chatDetail #topArea #name {
+    font-size: 1.2rem; 
+}
+#chatWrap #chatDetail #topArea #charImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1.5rem 0 2rem;
+    font-size: 2rem;
+    background-color: var(--main-color-3);
+    color: var(--font-color-3);
+    border-radius: 2rem;
+}
+#chatWrap #chatDetail #mainArea {
+    flex: 1 0 0;
+    padding: 1rem 1.5rem;
+    overflow-y: scroll;
+}
+#chatWrap #chatDetail #bottomArea {
+    flex: 0 0 6.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--border-color-1);
+}
+#chatWrap #chatDetail #bottomArea #bottomChatWrap input {
+    height: 2.5rem;
+    width: 60rem;
+    padding: 0rem .7rem;
+    border-radius: .2rem;
+    border: 1px solid var(--border-color-2);
+}
