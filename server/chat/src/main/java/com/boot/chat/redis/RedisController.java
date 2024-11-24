@@ -3,6 +3,7 @@ package com.boot.chat.redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,8 +28,12 @@ public class RedisController {
     }
 
     @MessageMapping("/chat/{roomId}")
-    public void sendMessage(@DestinationVariable String roomId, @RequestBody MessageVO message) throws JsonProcessingException {
-        String stringMsg = objectMapper.writeValueAsString(message);
+    public void sendMessage(@DestinationVariable String roomId, @Payload String message) throws JsonProcessingException {
+        MessageVO messageVo = new MessageVO();
+        messageVo.setRoomId(roomId);
+        messageVo.setContent(message);
+
+        String stringMsg = objectMapper.writeValueAsString(messageVo);
         messagePublisher.publish(stringMsg);
     }
 }
