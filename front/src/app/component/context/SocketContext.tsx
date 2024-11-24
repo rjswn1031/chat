@@ -4,7 +4,7 @@ import { Client } from "@stomp/stompjs";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import SockJS from "sockjs-client";
 
-const SocketContext = createContext<{client:Client, send:Function, setCallback:Function}|null>(null);
+const SocketContext = createContext<{client:Promise<Client>, send:Function, setCallback:Function}|null>(null);
 
 export const SocketProvider = ({children}:{children: ReactNode}) => {
     const _client = new Client({
@@ -18,24 +18,29 @@ export const SocketProvider = ({children}:{children: ReactNode}) => {
     const [msgCallback, setMsgCallback] = useState<Array<Function>>([]);
     const [client, setClient] = useState<Client>(_client);
 
-    client.onConnect = (frame:any) => {
-        console.log('Connected: ' + frame);
-        setIsConnect(true);
+    const connectPromise:Promise<Client> = new Promise((res,rej)=>{
+        client.onConnect = (frame:any) => {
+            console.log('Connected: ' + frame);
+            setIsConnect(true);
+        
+            res(client);
+            /*
+            // /topic/chat 구독
+            client.subscribe('/topic/chat/1', function (message) {
+                const messageContent = message.body//JSON.parse(message.body);
+                msgCallback.map((f:Function)=>f(message))
+                console.log(messageContent);
+            });
     
-        // /topic/chat 구독
-        client.subscribe('/topic/chat/1', function (message) {
-            const messageContent = message.body//JSON.parse(message.body);
-            msgCallback.map((f:Function)=>f(message))
-            console.log(messageContent);
-        });
-
-        // /topic/chat 구독
-        client.subscribe('/topic/chat/2', function (message) {
-            const messageContent = message.body//JSON.parse(message.body);
-            msgCallback.map((f:Function)=>f(message))
-            console.log(messageContent);
-        });
-    }
+            // /topic/chat 구독
+            client.subscribe('/topic/chat/2', function (message) {
+                const messageContent = message.body//JSON.parse(message.body);
+                msgCallback.map((f:Function)=>f(message))
+                console.log(messageContent);
+            });
+            */
+        }
+    });
     
     client.onStompError = (error:any) => { 
         console.log('Broker reported error: ' + error.headers['message']);
@@ -54,10 +59,10 @@ export const SocketProvider = ({children}:{children: ReactNode}) => {
 
     useEffect(()=>{
         client.activate();
-    }, [])
+    }, []);
 
     return (
-    <SocketContext.Provider value={{client: client, send: sendMessage, setCallback: setMsgCallback}}>
+    <SocketContext.Provider value={{client: connectPromise, send: sendMessage, setCallback: setMsgCallback}}>
         {children}
     </SocketContext.Provider>
     )

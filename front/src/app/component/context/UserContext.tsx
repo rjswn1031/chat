@@ -6,9 +6,10 @@ import { MemberInfo } from "../config/type";
 const UserContext = createContext<{user:MemberInfo, setUser:Function}|null>(null);
 
 export const UserProvider = ({children}:{children: ReactNode}) => {
-    const [user, setUser] = useState({mem_id: "", mem_name: "", mem_tel: "", mem_email: ""});
+    const memInfo = { mem_id: "leekj", mem_name: "이건주", mem_tel: "010-1111-1111", mem_email: "leekj@chat.com" };
+    const [user, setUser] = useState({...memInfo});
     useEffect(()=>{
-        setUser({ mem_id: "leekj", mem_name: "이건주", mem_tel: "010-1111-1111", mem_email: "leekj@chat.com" });
+        //setUser({ mem_id: "leekj", mem_name: "이건주", mem_tel: "010-1111-1111", mem_email: "leekj@chat.com" });
     }, [])
 
     return (

@@ -26,6 +26,18 @@ const ChatDetail = ({roomId}: {roomId:number}):JSX.Element => {
         socket?.send(2, {msg: 'Hello world2'});
     }
 
+    /*
+    useEffect(()=>{
+        console.log(roomId)
+        socket?.client.then((client)=>{
+            client.subscribe(`/topic/chat/${roomId}`, function (message) {
+                const messageContent = message.body//JSON.parse(message.body);
+                //msgCallback.map((f:Function)=>f(message))
+                console.log(messageContent);
+            });
+        })
+    }, [])*/
+
     return (
         <div id="chatDetail">
             <div id="topArea">
