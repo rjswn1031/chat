@@ -2,14 +2,8 @@
 import ContentMain from "@/app/component/block/ContentMain";
 import { convDateFormat } from "@/app/component/config/common";
 import { ChatRoomInfo } from "@/app/component/config/type";
-import { useAxios } from "@/app/component/context/AxiosContext";
-import { useUser } from "@/app/component/context/UserContext";
-import { useEffect, useState } from "react";
 
-const ChatMain = ({setRoomId}: {setRoomId:Function}):JSX.Element => {
-    const user = useUser();
-    const axios = useAxios();
-
+const ChatMain = ({roomList, setRoomId}: {roomList: Array<ChatRoomInfo>,setRoomId:Function}):JSX.Element => {
     const getChatList = () => {
         return null;
     }
@@ -31,25 +25,10 @@ const ChatMain = ({setRoomId}: {setRoomId:Function}):JSX.Element => {
         )
     }
 
-    const ChatList = ():JSX.Element => {
-        const [chatList, setChatList] = useState<Array<ChatRoomInfo>>([]);
-        useEffect(()=>{
-            axios?.post("/getChatRoomList", null, {params: {"mem_id": user?.user.mem_id}}).then(r=>{ //console.log(r)
-                setChatList(r.data);
-            });
-        }, [])
-
-        return (
-            <>
-                { chatList.map((x:ChatRoomInfo, idx:number)=>{ return <ContentItem key={idx} info={x}></ContentItem> }) }
-            </>
-        )
-    }
-
     return (
         <ContentMain title="Chats" searchFunc={getChatList}>
             <ul id="ctntItemWrap">
-                <ChatList></ChatList>
+                { roomList.map((x:ChatRoomInfo, idx:number)=>{ return <ContentItem key={idx} info={x}></ContentItem> }) }
             </ul>
         </ContentMain>
     )

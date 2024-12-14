@@ -1,7 +1,6 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { AxiosResponse } from "axios";
 import { BsFillPersonFill } from "react-icons/bs";
 import { convDateFormat } from "../config/common";
 import { MsgListInfo } from "../config/type";
@@ -10,35 +9,19 @@ import { useUser } from "../context/UserContext";
 
 import "./chatMainArea.css";
 
-const ChatMainArea = ({roomId}:{roomId: number}):JSX.Element => {
+const ChatMainArea = ({roomId, msgList, timeList}: {roomId:number, msgList:Array<MsgListInfo>, timeList:Array<string>}):JSX.Element => {
     const user = useUser();
     const axios = useAxios();
-    const [msgList, setMsgList] = useState<Array<MsgListInfo>>([]);
-    const [timeList, setTimeList] = useState<Array<string>>([]);
+
+    const chatMainRef = useRef<HTMLDivElement>(null);
 
     useEffect(()=>{
-        axios?.post("/getMsgList", null, {params: {room_id: roomId}}).then((r:AxiosResponse)=>{ console.log(r)
-            let timeArr = [];
-            let msgArr = [];
-
-            for(let msgInfo of r.data) {
-                const date = convDateFormat(msgInfo.msg_create_dt, "YMD");
-                const info = {
-                    date: date,
-                    time: convDateFormat(msgInfo.msg_create_dt, "hm"),
-                    name: msgInfo.mem_name,
-                    msg: msgInfo.msg_content,
-                    left: msgInfo.msg_send_id === user?.user.mem_id ? false : true
-                }
-
-                timeArr.push(date);
-                msgArr.push(info);
-            }
-
-            setTimeList(Array.from(new Set(timeArr))); 
-            setMsgList(msgArr);
-        });
+        //chatMainRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        if(chatMainRef.current) chatMainRef.current.scrollTop = chatMainRef.current.scrollHeight;
+        //chatMainRef.current?.scrollIntoView({block: "end"})
     }, [roomId]);
+
+    
 
     const TimeBlock = ({date}: {date:string}):JSX.Element => {
         const dayString = ["일","월","화","수","목","금","토"];
@@ -80,7 +63,7 @@ const ChatMainArea = ({roomId}:{roomId: number}):JSX.Element => {
     }
 
     return (
-        <div id="mainArea">
+        <div id="mainArea" ref={chatMainRef}>
             {timeList.map((t:string, i:number)=><TimeBlock key={i} date={t}></TimeBlock>)}
         </div>
     )
