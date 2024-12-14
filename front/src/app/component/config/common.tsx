@@ -1,5 +1,5 @@
-export function convDateFormat(dateStr:string, format:string):string {
-    const date = new Date(dateStr);
+export function convDateFormat(dateStr:string|Date, format:string):string {
+    const date = typeof(dateStr) === 'string' ? new Date(dateStr) : dateStr;
 
     const year = date.getFullYear();
     const month = date.getMonth() + 1 < 10 ? "0"+(date.getMonth() + 1) : (date.getMonth() + 1);
