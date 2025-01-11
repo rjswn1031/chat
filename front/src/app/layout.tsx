@@ -6,12 +6,14 @@ import "./style/style.css";
 import Login from "./component/block/Login";
 import NavBar from "./component/block/NavBar";
 
+import { useState } from "react";
 import { AxiosProvider } from "./component/context/AxiosContext";
 import { SocketProvider } from "./component/context/SocketContext";
-import { UserProvider, useUser } from "./component/context/UserContext";
+import { UserProvider } from "./component/context/UserContext";
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
-  const user = useUser();
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <html>
       <head>
@@ -22,7 +24,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
           <UserProvider>
             <SocketProvider>
               {
-                user?.user.mem_id ? (
+                isLogin ? (
                 <div id="MainWrap">
                   <NavBar></NavBar>
                   <div id="contentWrap">
@@ -30,7 +32,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
                   </div>
                 </div>
                 ) : (
-                  <Login></Login>
+                  <Login setIsLogin={setIsLogin}></Login>
                 )
               }
             </SocketProvider>

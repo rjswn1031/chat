@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.boot.chat.mapper.ChatMapper">
+    <select id="getLogin" resultType="map">
+        SELECT mem_id 
+             , mem_name 
+             , mem_tel
+             , mem_email
+        FROM CHAT_MEMBER
+        WHERE mem_id = #{mem_id}
+        AND mem_pass = #{mem_pass}
+    </select>
+
+    <select id="getMemListByName" parameterType="ChatVO" resultType="map">
+        SELECT mem_id 
+             , mem_name 
+             , mem_tel
+             , mem_email
+        FROM CHAT_MEMBER
+        WHERE mem_name LIKE '%${mem_name}%'
+    </select>
+
     <select id="getChatRoomList" resultType="map">
         SELECT room_id
              , create_dt

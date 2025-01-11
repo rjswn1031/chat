@@ -6,6 +6,10 @@ import java.util.Map;
 import com.boot.chat.vo.ChatVO;
 
 public interface ChatService {
+    public List<Map<String, Object>> getLogin(ChatVO vo);
+    
+    public List<Map<String, Object>> getMemListByName(ChatVO vo);
+
     public List<Map<String, Object>> getChatRoomList();
     public List<Map<String, Object>> getChatRoomListByUser(ChatVO vo);
     

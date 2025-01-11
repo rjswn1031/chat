@@ -16,6 +16,16 @@ public class ChatServiceImpl implements ChatService {
     ChatMapper mapper;
 
     @Override
+    public List<Map<String, Object>> getLogin(ChatVO vo) {
+        return mapper.getLogin(vo);
+    }
+
+    @Override
+    public List<Map<String, Object>> getMemListByName(ChatVO vo) {
+        return mapper.getMemListByName(vo);
+    }
+
+    @Override
     public List<Map<String, Object>> getChatRoomList() {
         return mapper.getChatRoomList();
     }

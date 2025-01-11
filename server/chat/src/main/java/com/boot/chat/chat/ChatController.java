@@ -18,7 +18,19 @@ public class ChatController {
     
     @Autowired
     ChatService service;
+
+    @ResponseBody
+    @RequestMapping("/getLogin")
+    public List<Map<String, Object>> getLogin(ChatVO vo) {
+        return service.getLogin(vo);
+    }
     
+    @ResponseBody
+    @RequestMapping("/getMemListByName")
+    public List<Map<String, Object>> getMemListByName(ChatVO vo) {
+        return service.getMemListByName(vo);
+    }
+
     @ResponseBody
     @RequestMapping("/getChatRoomList")
     public List<Map<String, Object>> getChatRoomList(ChatVO vo) {

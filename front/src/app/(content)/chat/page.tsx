@@ -17,7 +17,7 @@ export default function Home() {
     const socket = useSocket();
     
     const roomIdRef = useRef(1);
-    const [roomId, setRoomId] = useState(1);
+    const [roomId, setRoomId] = useState(0);
     const [roomList, setRoomList] = useState<Array<ChatRoomInfo>>([]);
     const [timeList, setTimeList] = useState<Array<string>>([]);
     const [msgList, setMsgList] = useState<Array<MsgListInfo>>([]);
@@ -35,13 +35,14 @@ export default function Home() {
             time: convDateFormat(msgInfo.msg_create_dt, "hm"),
             name: msgInfo.mem_name,
             msg: msgInfo.msg_content,
-            left: msgInfo.msg_send_id === user?.user.mem_id ? false : true
+            left: msgInfo.msg_send_id === user?.user.current.mem_id ? false : true
         };
         setMsgList((prev)=>[...prev, info]);
     };
     
     useEffect(()=>{
-        axios?.post("/getChatRoomList", null, {params: {"mem_id": user?.user.mem_id}}).then(r=>{ //console.log(r)
+        axios?.post("/getChatRoomList", null, {params: {"mem_id": user?.user.current.mem_id}}).then(r=>{ //console.log(r)
+            console.log(user?.user.current.mem_id)
             setRoomList(r.data); //방 정보 세팅
 
             r.data.map((roomInfo:ChatRoomInfo)=>{
@@ -73,7 +74,7 @@ export default function Home() {
                     time: convDateFormat(msgInfo.msg_create_dt, "hm"),
                     name: msgInfo.mem_name,
                     msg: msgInfo.msg_content,
-                    left: msgInfo.msg_send_id === user?.user.mem_id ? false : true
+                    left: msgInfo.msg_send_id === user?.user.current.mem_id ? false : true
                 }
 
                 timeArr.push(date);

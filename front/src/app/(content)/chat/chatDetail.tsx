@@ -18,16 +18,16 @@ const ChatDetail = ({roomId, msgList, timeList}: {roomId:number, msgList:Array<M
     const sendMsg = (msg:string) => {
         
         const msgInfo:MsgInfo = {
-            mem_name: user?.user.mem_name ? user?.user.mem_name : "",
+            mem_name: user?.user.current.mem_name ? user?.user.current.mem_name : "",
             msg_content: msgValue,
             msg_create_dt: convDateFormat(new Date(), "YMD"),
             msg_no: 0,
-            msg_send_id: user?.user.mem_id ? user?.user.mem_id : "",
+            msg_send_id: user?.user.current.mem_id ? user?.user.current.mem_id : "",
             msg_state: false,
             room_id: roomId
         };
 
-        axios?.post("/sendMsg", null, {params: {room_id:roomId, mem_id:user?.user.mem_id, msg_content: msg}});
+        axios?.post("/sendMsg", null, {params: {room_id:roomId, mem_id:user?.user.current.mem_id, msg_content: msg}});
         socket?.send(roomId, {...msgInfo});
 
         setMsgValue("");

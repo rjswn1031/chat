@@ -1,3 +1,16 @@
+/* ======================================================================================================== */
+/* Login */
+#loginWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* ======================================================================================================== */
+/* NavBar */
+
 #navBarWrap { 
     flex: 0 0 5.8%;
     display: flex;
@@ -43,6 +56,107 @@
 #navBarWrap .navBottom { flex: 0 0 10%; }
 
 /* ======================================================================================================== */
+/* modal */
+.modalWrap {
+    position: absolute;
+    top: 10rem;
+    left: 41rem;
+    background-color: var(--main-color-1);
+    border: 1px solid var(--border-color-2);
+    border-radius: 0.3rem;
+}
+
+.modalWrap .mTop {
+    display: flex;
+    font-size: 1.3rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color-2);
+    padding: 0.8rem 1rem;
+}
+
+.modalWrap .mTBtn {
+    display: flex;
+    margin-left: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalWrap .mContent {
+    padding: 0.8rem 1rem;
+}
+
+.modalWrap .craTop .craSearch .crasInput {
+    height: 2.5rem;
+    padding: 0.3rem 1rem;
+    border-radius: .2rem;
+    border: 1px solid var(--border-color-2);
+    width: 20rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.modalWrap .craSearchList .craMemItem {
+    width: 18rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-color-2);
+    border-left: 1px solid var(--border-color-2);
+    border-right: 1px solid var(--border-color-2);
+    padding: 0 1rem;
+}
+
+.modalWrap .craSearchList .craMemItem:last-child {
+    border-bottom: 1px solid var(--border-color-2);
+}
+.modalWrap .craSearchList .craMemItem .cramInfo {
+    display: flex;
+}
+.modalWrap .craSearchList .craMemItem .cramInfo .cramImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 2rem;
+    margin-right: 1rem;
+    background-color: var(--main-color-3);
+    color: var(--font-color-3);
+    border-radius: 2rem;
+}
+.modalWrap .craSearchList .craMemItem .cramInfo .cramName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalWrap .craSearchList .craMemItem .cramCheck {
+    font-size: 1.3em;
+    background-color: var(--main-color-1);
+    color: var(--main-color-1);
+    border-radius: 1rem;
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.modalWrap .craSearchList .craMemItem .cramCheck.selected {
+    background-color: var(--font-color-2);
+    color: var(--main-color-1);
+}
+
+.modalWrap .craCreateBtn {
+    width: 100%;
+    height: 2.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    background-color: var(--font-color-2);
+    color: var(--main-color-1);
+    border: 1px solid var(--border-color-1);
+    border-radius: 0.3rem;
+}
+
+/* ======================================================================================================== */
 /* chatWrap */
 
 #chatWrap { 
@@ -51,11 +165,30 @@
 }
 #chatWrap #chatMain { flex: 2 0 0; border-right: 1px solid var(--border-color-1); }
 
-#chatMain .mainTitle {
-    margin: 3rem 0 3rem 0;
+#chatMain .mainTop {
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+#chatMain .mainTop .mainTitle {
+    margin: 1rem 0 1rem 0;
     padding: 0 2rem;
     font-size: 1.5rem;
     font-weight: 600;
+}
+#chatMain .mainTop .mainAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--font-color-4);
+    font-weight: bold;
+    font-size: 1.6rem;
+    background-color: var(--main-color-3);
+    border-radius: 2rem;
+    cursor: pointer;
 }
 
 #chatMain .mainSearch {

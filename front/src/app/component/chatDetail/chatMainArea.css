@@ -49,3 +49,7 @@
     background-color: var(--main-color-3);
     border-radius: 0.3rem;
 }
+.timeBlock .chatBlock.right .message {
+    background-color: var(--font-color-2);
+    color: var(--main-color-4);
+}
